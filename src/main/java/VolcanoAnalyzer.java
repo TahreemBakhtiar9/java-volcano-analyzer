@@ -33,16 +33,12 @@ public class VolcanoAnalyzer {
 
 
     //add methods here to meet the requirements in README.md
-    public List<Volcano> volcanoEightiesErupted(){
-        List<Volcano> eruptedInEighties = new ArrayList<>();
-        volcanos.stream().forEach(ve -> {
-            if (ve.getYear() >= 1880 && ve.getYear() < 1890) {
-                eruptedInEighties.add(ve);
-            }
-        });
-        return eruptedInEighties;
+    public List<Volcano> eruptedInEighties(){
+        return volcanos.stream().filter(e -> e.getYear() >= 1980 && e.getYear() < 1990).collect(Collectors.toList());
     }
     
-    
+    public String[] highVEI(){
+        return volcanos.stream().filter(vei -> vei.getVEI() >= 6).map(Volcano::getName).toArray(String[] :: new);
+    }
 
 }

@@ -46,34 +46,34 @@ public class VolcanoAnalyzerTests {
         //Teardown
     }
 
-    // @Test
-    // public void eruptedInEighties() {
-    //     //Setup
-    //     Integer expected = 40;
+    @Test
+    public void eruptedInEighties() {
+        //Setup
+        Integer expected = 40;
 
-    //     //Execute
-    //     Integer actual = va.eruptedInEighties().size();
+        //Execute
+        Integer actual = va.eruptedInEighties().size();
 
-    //     //Assert
-    //     assertEquals(expected, actual, "should have 40 volcanoes");
+        //Assert
+        assertEquals(expected, actual, "should have 40 volcanoes");
 
-    //     //Teardown
-    // }
+        //Teardown
+    }
 
-    // @Test
-    // public void highVEI() {
-    //     //Setup
-    //     String[] expected = { "Macauley Island", "Kikai", "Masaya", "Pago", "Taal", "Pinatubo", "Long Island", "Black Peak", "St. Helens", "Veniaminof", "Aniakchak", "Santorini", "Taupo", "Pago", "Pinatubo", "Raoul Island", "Okmok", "Apoyeque", "Ambrym", "Bona-Churchill", "Taupo", "Ksudach", "Ilopango", "Rabaul", "Pago", "Bona-Churchill", "Dakataua", "Ceboruco", "Changbaishan", "Quilotoa", "Kuwae", "Bardarbunga", "Huaynaputina", "Long Island", "Tambora", "Krakatau", "Santa Maria", "Novarupta", "Pinatubo" };
+    @Test
+    public void highVEI() {
+        //Setup
+        String[] expected = { "Macauley Island", "Kikai", "Masaya", "Pago", "Taal", "Pinatubo", "Long Island", "Black Peak", "St. Helens", "Veniaminof", "Aniakchak", "Santorini", "Taupo", "Pago", "Pinatubo", "Raoul Island", "Okmok", "Apoyeque", "Ambrym", "Bona-Churchill", "Taupo", "Ksudach", "Ilopango", "Rabaul", "Pago", "Bona-Churchill", "Dakataua", "Ceboruco", "Changbaishan", "Quilotoa", "Kuwae", "Bardarbunga", "Huaynaputina", "Long Island", "Tambora", "Krakatau", "Santa Maria", "Novarupta", "Pinatubo" };
 
-    //     //Execute
-    //     String[] actual = va.highVEI();
+        //Execute
+        String[] actual = va.highVEI();
 
-    //     //Assert
-    //     assertEquals( expected.length, actual.length, "should have 39 volcanoes");
-    //     assertArrayEquals(expected, actual, "should have the correct volcanoes");
+        //Assert
+        assertEquals( expected.length, actual.length, "should have 39 volcanoes");
+        assertArrayEquals(expected, actual, "should have the correct volcanoes");
 
-    //     //Teardown
-    // }
+        //Teardown
+    }
 
     // @Test
     // public void mostDeadly() {
