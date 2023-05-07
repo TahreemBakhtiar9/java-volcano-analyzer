@@ -3,8 +3,10 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
@@ -29,6 +31,18 @@ public class VolcanoAnalyzer {
         return volcanos.size();
     }
 
+
     //add methods here to meet the requirements in README.md
+    public List<Volcano> volcanoEightiesErupted(){
+        List<Volcano> eruptedInEighties = new ArrayList<>();
+        volcanos.stream().forEach(ve -> {
+            if (ve.getYear() >= 1880 && ve.getYear() < 1890) {
+                eruptedInEighties.add(ve);
+            }
+        });
+        return eruptedInEighties;
+    }
+    
+    
 
 }
