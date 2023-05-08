@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
 public class VolcanoAnalyzer {
+    private static final double Double = 0;
     private List<Volcano> volcanos;
 
     public void loadVolcanoes(Optional<String> pathOpt) throws IOException, URISyntaxException {
@@ -64,5 +65,11 @@ public class VolcanoAnalyzer {
  
         return volcanos.stream().filter( v-> v.getCountry().equalsIgnoreCase(Country)).count();
     }
+
+    public Double averageElevation(){
+
+        return volcanos.stream().mapToDouble(Volcano :: getElevation).average().orElse(Double);
+    }
+
 }
 
