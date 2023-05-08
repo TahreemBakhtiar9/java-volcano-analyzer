@@ -71,5 +71,9 @@ public class VolcanoAnalyzer {
         return volcanos.stream().mapToDouble(Volcano :: getElevation).average().orElse(Double);
     }
 
+    public String[] volcanoTypes() {
+        return volcanos.stream().map( Volcano :: getType).distinct().toArray(String[]:: new); 
+    }
+
 }
 
