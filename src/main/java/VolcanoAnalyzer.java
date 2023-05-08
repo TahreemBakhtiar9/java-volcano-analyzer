@@ -59,5 +59,10 @@ public class VolcanoAnalyzer {
         .orElse(null);
 
     }
+
+    public Long  eruptionsByCountry(String Country){
+ 
+        return volcanos.stream().filter( v-> v.getCountry().equalsIgnoreCase(Country)).count();
+    }
 }
 
