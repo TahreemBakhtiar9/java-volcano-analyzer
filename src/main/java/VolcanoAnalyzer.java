@@ -75,5 +75,12 @@ public class VolcanoAnalyzer {
         return volcanos.stream().map( Volcano :: getType).distinct().toArray(String[]:: new); 
     }
 
+
+    public Double percentNorth() {
+        double value =  volcanos.stream().filter(v-> v.getLatitude() > 0).count();
+       
+        return  value / volcanos.size()*100; 
+       }
+
 }
 
