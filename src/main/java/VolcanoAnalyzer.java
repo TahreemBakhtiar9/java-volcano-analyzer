@@ -88,9 +88,11 @@ public class VolcanoAnalyzer {
         .filter( v-> v.getTsu().equals(""))
         .filter( v-> v.getLatitude() < 0)
         .filter(v-> v.getVEI() == 5).map( Volcano :: getName).toArray(String[]:: new);
-      
-      
       }
+
+      public String[] loadVolcanoes(int i) {
+        return volcanos.stream().filter(v-> v.getElevation() > i).map( Volcano :: getName).toArray(String[]:: new);
+    }
       
 
 }
