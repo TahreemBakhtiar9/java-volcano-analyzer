@@ -82,5 +82,16 @@ public class VolcanoAnalyzer {
         return  value / volcanos.size()*100; 
        }
 
+       public String[] manyFilters() {
+
+        return volcanos.stream().filter(v-> v.getYear() > 1800)
+        .filter( v-> v.getTsu().equals(""))
+        .filter( v-> v.getLatitude() < 0)
+        .filter(v-> v.getVEI() == 5).map( Volcano :: getName).toArray(String[]:: new);
+      
+      
+      }
+      
+
 }
 
