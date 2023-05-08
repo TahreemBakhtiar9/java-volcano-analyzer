@@ -41,4 +41,10 @@ public class VolcanoAnalyzer {
         return volcanos.stream().filter(vei -> vei.getVEI() >= 6).map(Volcano::getName).toArray(String[] :: new);
     }
 
+    public  float  causedTsunami(){
+
+    float value= volcanos.stream().filter(v-> v.getTsu().equals("tsu")).count();
+    return  value / volcanos.size()*100;
+ 
+
 }
