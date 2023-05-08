@@ -4,6 +4,8 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -92,8 +94,29 @@ public class VolcanoAnalyzer {
         return volcanos.stream().filter(v -> v.getElevation() > i).map(Volcano::getName).toArray(String[]::new);
     }
 
+    // public String[] topAgentsOfDeath() {
+    //     return null;
+    // }
+
+    /**
+     * @return
+     */
     public String[] topAgentsOfDeath() {
-        return null;
+        Optional<Volcano> maxDeaths = volcanos.stream()
+                .max(Comparator.comparing(Volcano::getDeaths));
+        if (maxDeaths.isPresent()) {
+            return maxDeaths.get().getAgent().toArray(new String[0]);
+        } else {
+            return new String[0];
+        }
     }
 
-}
+    public List<String> agentsOfDeathForTenDeadliestEruptions() {
+        return volcanos.stream()
+                .sorted(Comparator.comparingInt(Volcano::getDeaths).reversed())
+                .limit(10)
+                .flatMap(volcano -> volcano.getAgentsOfDeath().stream())
+                .collect(Collectors.toList());
+    }
+    
+}}
