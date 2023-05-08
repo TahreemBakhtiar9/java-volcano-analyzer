@@ -17,83 +17,83 @@ public class VolcanoAnalyzer {
     private List<Volcano> volcanos;
 
     public void loadVolcanoes(Optional<String> pathOpt) throws IOException, URISyntaxException {
-        try{
+        try {
             String path = pathOpt.orElse("volcano.json");
             URL url = this.getClass().getClassLoader().getResource(path);
             String jsonString = new String(Files.readAllBytes(Paths.get(url.toURI())));
             ObjectMapper objectMapper = new ObjectMapper();
             TypeFactory typeFactory = objectMapper.getTypeFactory();
-            volcanos = objectMapper.readValue(jsonString, typeFactory.constructCollectionType(List.class, Volcano.class));
-        } catch(Exception e){
-            throw(e);
+            volcanos = objectMapper.readValue(jsonString,
+                    typeFactory.constructCollectionType(List.class, Volcano.class));
+        } catch (Exception e) {
+            throw (e);
         }
     }
 
-    public Integer numbVolcanoes(){
+    public Integer numbVolcanoes() {
         return volcanos.size();
     }
 
-
-    //add methods here to meet the requirements in README.md
-    public List<Volcano> eruptedInEighties(){
+    // add methods here to meet the requirements in README.md
+    public List<Volcano> eruptedInEighties() {
         return volcanos.stream().filter(e -> e.getYear() >= 1980 && e.getYear() < 1990).collect(Collectors.toList());
     }
-    
-    public String[] highVEI(){
-        return volcanos.stream().filter(vei -> vei.getVEI() >= 6).map(Volcano::getName).toArray(String[] :: new);
+
+    public String[] highVEI() {
+        return volcanos.stream().filter(vei -> vei.getVEI() >= 6).map(Volcano::getName).toArray(String[]::new);
     }
 
-    public  float  causedTsunami(){
+    public float causedTsunami() {
 
-    float value= volcanos.stream().filter(v-> v.getTsu().equals("tsu")).count();
-        return  value / volcanos.size()*100;
+        float value = volcanos.stream().filter(v -> v.getTsu().equals("tsu")).count();
+        return value / volcanos.size() * 100;
 
-   
-}
+    }
 
     public String mostCommonType() {
-        return  volcanos.stream()
-        .collect(Collectors.groupingBy(Volcano::getType, Collectors.counting()))
-        .entrySet().stream()
-        .max(Map.Entry.comparingByValue())
-        .map(Map.Entry::getKey)
-        .orElse(null);
+        return volcanos.stream()
+                .collect(Collectors.groupingBy(Volcano::getType, Collectors.counting()))
+                .entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .orElse(null);
 
     }
 
-    public Long  eruptionsByCountry(String Country){
- 
-        return volcanos.stream().filter( v-> v.getCountry().equalsIgnoreCase(Country)).count();
+    public Long eruptionsByCountry(String Country) {
+
+        return volcanos.stream().filter(v -> v.getCountry().equalsIgnoreCase(Country)).count();
     }
 
-    public Double averageElevation(){
+    public Double averageElevation() {
 
-        return volcanos.stream().mapToDouble(Volcano :: getElevation).average().orElse(Double);
+        return volcanos.stream().mapToDouble(Volcano::getElevation).average().orElse(Double);
     }
 
     public String[] volcanoTypes() {
-        return volcanos.stream().map( Volcano :: getType).distinct().toArray(String[]:: new); 
+        return volcanos.stream().map(Volcano::getType).distinct().toArray(String[]::new);
     }
-
 
     public Double percentNorth() {
-        double value =  volcanos.stream().filter(v-> v.getLatitude() > 0).count();
-       
-        return  value / volcanos.size()*100; 
-       }
+        double value = volcanos.stream().filter(v -> v.getLatitude() > 0).count();
 
-       public String[] manyFilters() {
-
-        return volcanos.stream().filter(v-> v.getYear() > 1800)
-        .filter( v-> v.getTsu().equals(""))
-        .filter( v-> v.getLatitude() < 0)
-        .filter(v-> v.getVEI() == 5).map( Volcano :: getName).toArray(String[]:: new);
-      }
-
-      public String[] loadVolcanoes(int i) {
-        return volcanos.stream().filter(v-> v.getElevation() > i).map( Volcano :: getName).toArray(String[]:: new);
+        return value / volcanos.size() * 100;
     }
-      
+
+    public String[] manyFilters() {
+
+        return volcanos.stream().filter(v -> v.getYear() > 1800)
+                .filter(v -> v.getTsu().equals(""))
+                .filter(v -> v.getLatitude() < 0)
+                .filter(v -> v.getVEI() == 5).map(Volcano::getName).toArray(String[]::new);
+    }
+
+    public String[] loadVolcanoes(int i) {
+        return volcanos.stream().filter(v -> v.getElevation() > i).map(Volcano::getName).toArray(String[]::new);
+    }
+
+    public String[] topAgentsOfDeath() {
+        return null;
+    }
 
 }
-
